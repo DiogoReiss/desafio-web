@@ -1,20 +1,27 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { IRouteParams } from "../../utils/types";
+import arrow from "../../assets/arrow.svg";
+import Vehicles from "../../assets/vehicles.svg";
+import navButtons from "../../components/NavButtons";
+import Layout from "../../components/Layout";
+import RowCardSection from "../../components/RowCardSection";
+import Data from "../../utils/data";
+import AddRow from "../../components/AddRow";
 
 export default function TableID() {
   let { tableTitle }: IRouteParams = useParams<IRouteParams>();
   return (
-    <div className="bg-primary w-full h-screen">
-      <header>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lato:wght@400;700;900&display=swap"
-          rel="stylesheet"
-        />
-        <title>{tableTitle}</title>
-      </header>
-    </div>
+    <Layout title={tableTitle}>
+      <AddRow title={tableTitle} imgSRC={Vehicles} data={Data} />
+      <nav className="w-full flex justify-between">
+        <Link to="/" className="ml-20 self-end cursor-pointer">
+          <img src={arrow} alt="Home Page" />
+        </Link>
+        {navButtons()}
+      </nav>
+      <br />
+      <RowCardSection />
+    </Layout>
   );
 }
