@@ -46,14 +46,54 @@ interface vehicles {
 }
 
 export interface IRowCard {
-  children: React.ReactElement | React.ReactElement[];
   tableTitle: string;
   imgSRC: string;
   id: number;
+  cardSelected: number | undefined;
+  setCardSelected: Function;
+  pageMode: modes.listingMode | modes.editMode
+  props: Object;
 }
 
 export interface IAddRow {
   title: string;
-  imgSRC: string;
   data: Data;
+  toAdd: boolean;
+  setToAdd: Function; 
+  cardSelected: Function;
+}
+
+export interface IRowCardSection {
+  cardSelected: number | undefined;
+  setCardSelected: Function;
+  pageMode: modes.listingMode | modes.editMode;
+}
+
+export interface INavButtons {
+  pageMode: modes;
+  setPageMode: Function;
+  cardSelected: number | undefined;
+  setToAdd: Function;
+  setToDelete: Function;
+}
+
+export interface IDeleteRow {
+  toDelete: boolean;
+  setToDelete: Function
+  deleteFunction?: Function;
+  cardID: number | undefined;
+  cardSelected: Function;
+}
+
+export enum enumVehicles {
+  name = 'name',
+  doors = 'doors',
+  minHP = 'minHP',
+  maxHP = 'maxHP',
+}
+
+export enum enumCountries {
+  name = 'name',
+  acronym = 'acronym',
+  mortalityRate = 'mortalityRate',
 }

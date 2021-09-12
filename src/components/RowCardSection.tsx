@@ -1,12 +1,16 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { IRouteParams } from "../utils/types";
+import { IRouteParams, IRowCardSection } from "../utils/types";
 import Data from "../utils/data";
 import vehicles from "../assets/vehicles.svg";
 import countries from "../assets/countries.svg";
 import RowCard from "./RowCard";
 
-export default function RowCardSection() {
+export default function RowCardSection({
+  cardSelected,
+  setCardSelected,
+  pageMode,
+}: IRowCardSection) {
   let { tableTitle }: IRouteParams = useParams<IRouteParams>();
   const TableRow = (): React.ReactChild | React.ReactChild[] | any => {
     return tableTitle === "Countries"
@@ -18,11 +22,19 @@ export default function RowCardSection() {
             id,
           }): React.ReactChild | React.ReactChild[] => {
             return (
-              <RowCard tableTitle={tableTitle} imgSRC={countries} id={id}>
-                <p>{name}</p>
-                <p>{acronym}</p>
-                <p>Mortality Rate: {mortalityRate}%</p>
-              </RowCard>
+              <RowCard
+                tableTitle={tableTitle}
+                imgSRC={countries}
+                id={id}
+                cardSelected={cardSelected}
+                setCardSelected={setCardSelected}
+                pageMode={pageMode}
+                props={{
+                  name,
+                  acronym,
+                  mortalityRate,
+                }}
+              />
             );
           }
         )
@@ -35,12 +47,20 @@ export default function RowCardSection() {
             id,
           }): React.ReactChild | React.ReactChild[] => {
             return (
-              <RowCard tableTitle={tableTitle} imgSRC={vehicles} id={id}>
-                <p>{name}</p>
-                <p>DOORS: {doors}</p>
-                <p>MIN HP: {minHP}CV</p>
-                <p>MAX HP: {maxHP}CV</p>
-              </RowCard>
+              <RowCard
+                tableTitle={tableTitle}
+                imgSRC={vehicles}
+                id={id}
+                cardSelected={cardSelected}
+                setCardSelected={setCardSelected}
+                pageMode={pageMode}
+                props={{
+                  name,
+                  doors,
+                  minHP,
+                  maxHP,
+                }}
+              />
             );
           }
         );
