@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { IRowCard, modes } from "../utils/types";
 import Data from "../utils/data";
 
